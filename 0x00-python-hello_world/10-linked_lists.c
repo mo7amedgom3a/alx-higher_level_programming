@@ -61,16 +61,3 @@ void free_listint(listint_t *head)
         free(current);
     }
 }
-int check_cycle(listint_t *list)
-{
-	listint_t *i = list->next;
-
-	while(1)
-	{
-		if (i->next == NULL)
-			return (0);
-		else if(i->next == list)
-			return (1);
-		i = i->next;
-	}
-}
