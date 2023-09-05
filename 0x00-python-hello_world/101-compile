@@ -1,0 +1,16 @@
+#!/bin/bash
+
+pyfile="$PYFILE"
+if [ -n "$pyfile" ]; then
+    pycfile="${pyfile}c"
+    /usr/bin/py3compile "$pyfile" && mv "__pycache__"/"$pyfile"* "$pycfile" && rmdir "__pycache__"
+    if [ -f "$pycfile" ]; then
+        echo "Successfully compiled $pyfile to $pycfile"
+    else
+        echo "Error: Failed to compile $pyfile"
+        exit 1
+    fi
+else
+    echo "Error: Environment variable PYFILE not set."
+    exit 1
+fi
