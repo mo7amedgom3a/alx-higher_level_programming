@@ -12,5 +12,3 @@ elif (x == 0):
     print("and is 0")
 elif (6 > x and x != 0):
     print("and is less than 6 and not 0")
-
-
