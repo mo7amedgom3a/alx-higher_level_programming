@@ -1,27 +1,6 @@
 #include "lists.h"
-/**
- * reverseList - reverse the linked list
- * @head: head of the list
- * Return: reverse the second half of the linked list.
- */
-
-listint_t *reverseList(listint_t *head)
-{
-	listint_t *prev = NULL;
-	listint_t *current = head;
-	listint_t *next;
-
-	while (current != NULL)
-	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
-	}
-
-	return (prev);
-}
-
+#include <stdlib.h>
+#include <stdio.h>
 /**
  * is_palindrome - check is a linked list is palindrome
  * @head: head of the list
@@ -30,32 +9,44 @@ listint_t *reverseList(listint_t *head)
 
 int is_palindrome(listint_t **head)
 {
-	if (*head == NULL || (*head)->next == NULL)
-	{
+	listint_t *current = *head, *prev, *next, *left_head, *right_head;
+	int list_len = 0, i = 0, not_p = 0;
+
+	if (*head == NULL || head == NULL)
 		return (1);
-	}
-
-	listint_t *slow = *head;
-	listint_t *fast = *head;
-
-	while (fast->next != NULL && fast->next->next != NULL)
+	while (current != NULL)
+		list_len++, current = current->next;
+	if (list_len == 1)
+		return (1);
+	current = *head;
+	for (i = 1; i <= list_len / 2 && current != NULL; i++)
 	{
-		slow = slow->next;
-		fast = fast->next->next;
+		next = current->next;
+		if (prev != NULL)
+			current->next = prev;
+		else
+			current->next = NULL;
+		prev = current, current = next;
 	}
-
-	listint_t *secondHalf = reverseList(slow->next);
-	listint_t *firstHalf = *head;
-
-	while (secondHalf != NULL)
+	right_head = current, left_head = prev;
+	for (i = 1; i <= list_len / 2 && current != NULL; i++)
 	{
-		if (firstHalf->n != secondHalf->n)
+		if (list_len % 2 != 0 && i == 1)
+			current = current->next;
+		if (current->n != prev->n)
 		{
-			return (0);
+			not_p = 1;
+			break;
 		}
-		firstHalf = firstHalf->next;
-		secondHalf = secondHalf->next;
+		current = current->next, prev = prev->next;
 	}
-
-	return (1);
+	current = left_head, prev = right_head;
+	for (i = 1; i <= list_len / 2 && current != NULL; i++)
+	{
+		next = current->next;
+		if (prev != NULL)
+			current->next = prev;
+		prev = current, current = next;
+	}
+	return (not_p == 1 ? 0 : 1);
 }
