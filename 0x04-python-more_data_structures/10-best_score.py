@@ -10,6 +10,6 @@ def best_score(a_dictionary):
     for key in a_dictionary:
         if a_dictionary[key] > current_high_score:
             current_high_score = a_dictionary[key]
-            high_score_holder =  key
+            high_score_holder = key
 
     return high_score_holder
