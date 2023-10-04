@@ -1,20 +1,26 @@
 #!/usr/bin/python3
-"""
-Function to print a phrase
+""""
+
+This module contains a function that prints a name
+
 """
 
 
 def say_my_name(first_name, last_name=""):
-    """
-    Prints a phrase with:
+    '''This function prints name (<first name> <last name>)
 
-    first_name: string to be printed
-    last_name: second string to be printed
+    Args:
+        first_name (str): The fisrt name to be printed
+        last_name (str): The last name to be printed
 
-    Return: A formatted output with the strings.
-    """
-    if type(first_name) not in [str]:
+    Raises:
+        TypeError: If either the first_name and last_name are not strings
+
+    '''
+
+    if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
-    if type(last_name) not in [str]:
+
+    if not isinstance(last_name, str):
         raise TypeError("last_name must be a string")
-    print("My name is {} {}".format(first_name, last_name))
+    print(f"My name is {first_name} {last_name}")
