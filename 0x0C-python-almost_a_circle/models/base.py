@@ -20,3 +20,23 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """returns the JSON representation of list_dictionaries"""
+        if list_dictionaries is None or list_dictionaries == []:
+            return "[]"
+
+        return json.dumps(list_dictionaries)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Returns list of JSON string representations"""
+        json_string_list = []
+
+        if json_string is not None and json_string != '':
+            if type(json_string) != str:
+                raise TypeError("json_string must be a string")
+            json_string_list = json.loads(json_string)
+
+        return json_string_list
