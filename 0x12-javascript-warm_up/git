@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod +x *.c
 git add .
 git commit -m "test"
 git push origin master
