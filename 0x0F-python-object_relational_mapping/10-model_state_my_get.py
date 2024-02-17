@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     session = Session()
 
-    state = session.query(State).filter(State.name == 'Illinois').first()
+    state = session.query(State).filter(State.name == argv[4]).first()
     if state is not None:
         print('{}'.format(state.id))
     else:
